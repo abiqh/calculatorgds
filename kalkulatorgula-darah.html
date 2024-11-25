@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalkulator Gula Darah</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f9;
+    }
+
+    .calculator-container {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .calculator-container h1 {
+      margin-bottom: 20px;
+      color: #333333;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .normal {
+      color: green;
+    }
+
+    .pre-diabetes {
+      color: orange;
+    }
+
+    .diabetes {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator-container">
+    <h1>Kalkulator Gula Darah</h1>
+    <p>Masukkan nilai gula darah Anda (mg/dL):</p>
+    <input type="number" id="glucoseInput" placeholder="Nilai gula darah" />
+    <button onclick="checkBloodSugar()">Cek Kategori</button>
+    <div id="result" class="result"></div>
+  </div>
+
+  <script>
+    function checkBloodSugar() {
+      const glucoseLevel = parseFloat(document.getElementById("glucoseInput").value);
+      const resultDiv = document.getElementById("result");
+
+      if (isNaN(glucoseLevel) || glucoseLevel <= 0) {
+        resultDiv.textContent = "Masukkan nilai yang valid!";
+        resultDiv.className = "result";
+        return;
+      }
+
+      if (glucoseLevel < 140) {
+        resultDiv.textContent = "Gula darah Anda normal.";
+        resultDiv.className = "result normal";
+      } else if (glucoseLevel >= 140 && glucoseLevel <= 199) {
+        resultDiv.textContent = "Anda dalam kategori pradiabetes.";
+        resultDiv.className = "result pre-diabetes";
+      } else {
+        resultDiv.textContent = "Anda dalam kategori diabetes.";
+        resultDiv.className = "result diabetes";
+      }
+    }
+  </script>
+</body>
+</html>
